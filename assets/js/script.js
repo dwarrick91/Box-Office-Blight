@@ -1,4 +1,115 @@
-<<<<<<< HEAD
+var Onward = {
+    title: "Onward",
+    releaseDate: '2020-03-06',
+    budget: 175
+};
+
+var theBanker = {
+    title: "The Banker",
+    releaseDate: '2020-03-06',
+    budget: 11
+}
+
+var theWretched = {
+    title: "The Wretched",
+    releaseDate: '2020-05-01',
+    budget: .066
+}
+
+var theVastOfNight = {
+    title: "The Vast of Night",
+    releaseDate: '2020-05-29',
+    budget: .7
+}
+
+var Followed = {
+    title: "Followed",
+    releaseDate: '2020-06-19',
+    budget: .081
+}
+
+var missJuneteenth = {
+    title: "Miss Juneteenth",
+    releaseDate: '2020-06-19',
+    budget: 11
+}
+
+var Relic = {
+    title: "Relic",
+    releaseDate: '2020-07-10',
+    budget: 70
+}
+
+var taxCollector = {
+    title: "Tax Collector",
+    releaseDate: '2020-08-20',
+    budget: 30
+}
+
+var Tenet = {
+    title: "Tenet",
+    releaseDate: '2020-09-03',
+    budget: 200
+}
+
+var theBrokenHeartsGallery = {
+    title: "The Broken Hearts Gallery",
+    releaseDate: '2020-09-11',
+    budget: 8
+}
+
+var theWarWithGrandpa = {
+    title: "The War with Grandpa",
+    releaseDate: '2020-10-09',
+    budget: 11
+}
+
+var honestThief = {
+    title: "Honest Thief",
+    releaseDate: '2020-10-16',
+    budget: 30
+}
+
+var letHimGo = {
+    title: "Let Him Go",
+    releaseDate: '2020-11-20',
+    budget: 8
+}
+
+var freaky = {
+    title: "Freaky",
+    releaseDate: '2020-13-20',
+    budget: 11
+}
+
+var wonderWoman1984 = {
+    title: "Wonder Woman 1984",
+    releaseDate: '2020-12-25',
+    budget: 200
+}
+
+var respect = {
+    title: "Respect",
+    releaseDate: '2021-01-21',
+    budget: 55
+}
+
+var mortalKombat = {
+    title: "Mortal Kombat",
+    releaseDate: '2021-01-21',
+    budget: 55
+}
+
+var  tomAndJerry = {
+    title: "Tom and Jerry",
+    releaseDate: '2021-02-21',
+    budget: 79
+}
+
+filmList = [Onward,theBanker, theWretched,theVastOfNight,Followed,missJuneteenth,Relic,taxCollector,Tenet,theBrokenHeartsGallery,theWarWithGrandpa,honestThief,letHimGo,freaky,wonderWoman1984,respect,mortalKombat,tomAndJerry]
+
+
+
 var queryURL = "https://api.covidtracking.com/v2/us/daily.json"
 // make sure to use v.2. The above gets data for California. Will need to convert state into 2-letter state code
 dataList = [];
@@ -68,9 +179,11 @@ function colorDate(date, dateList, colorList) {
     return colorList;
 }
 
-//For dynamically resizing charts once they are nested in page
-//https://www.chartjs.org/docs/3.2.1/configuration/responsive.html
 
+function movieGrossCharat() {
+
+
+}
 
 // var newQueryURL = "http://www.omdbapi.com/?y=2020&apikey=c3d2c14c"
 
@@ -81,7 +194,6 @@ function colorDate(date, dateList, colorList) {
 //     .then(function(data){
 //         console.log(data);
 //     })
-=======
 var apiKey = "f9f4dca9"
  var ombdUrl = `http://www.omdbapi.com/?i=tt3896198&apiKey=${apiKey}&t=${title}`
 var boxOffice = document.querySelector("#boxOffice")
@@ -97,4 +209,3 @@ var boxOffice = document.querySelector("#boxOffice")
     })
       
      boxOffice.textContent
->>>>>>> main
