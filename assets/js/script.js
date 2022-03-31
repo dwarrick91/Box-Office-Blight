@@ -238,3 +238,7 @@ function newSearch(searchItem) {
     localStorage.setItem("storedList", JSON.stringify(movieStoredList));
 
 }
+
+$(document).ready(function(){
+    $('select').formSelect();
+  });
