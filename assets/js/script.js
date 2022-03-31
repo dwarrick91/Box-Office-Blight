@@ -12,4 +12,4 @@ var boxOffice = document.querySelector("#boxOffice")
       console.log(data);
     })
       
-     boxOffice.textContent
+    
