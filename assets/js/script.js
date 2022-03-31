@@ -56,25 +56,16 @@ function logConvert(dataList) {
     return logList;
 }
 
+//To recolor data point for date of movie release in theaters
 function colorDate(date, dateList, colorList) {
     for (i=0; i<dateList.length; i++) {
         if (date === dateList[i]) {
-            console.log("hi!");
             colorList.splice(i,0,'rgba(255, 10, 32, 3.8)')
             colorList.splice(i+1,1);
         }
     }
     return colorList;
 }
-
-// function dayToDayPercentChange(dataList) {
-//     newList = [];
-//     for (i=0; i<dataList.length; i++) {
-//         newList.push(dataList[i]/dataList[i-1])
-//     }
-//     return newList;
-// }
-
 
 //For dynamically resizing charts once they are nested in page
 //https://www.chartjs.org/docs/3.2.1/configuration/responsive.html
