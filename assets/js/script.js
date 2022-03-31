@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var Onward = {
     title: "Onward",
     releaseDate: '2020-03-06',
@@ -110,8 +109,6 @@ var  tomAndJerry = {
 filmList = [Onward,theBanker, theWretched,theVastOfNight,Followed,missJuneteenth,Relic,taxCollector,Tenet,theBrokenHeartsGallery,theWarWithGrandpa,honestThief,letHimGo,freaky,wonderWoman1984,respect,mortalKombat,tomAndJerry]
 
 
-=======
->>>>>>> main
 
 var queryURL = "https://api.covidtracking.com/v2/us/daily.json"
 // make sure to use v.2. The above gets data for California. Will need to convert state into 2-letter state code
@@ -197,10 +194,6 @@ function movieGrossCharat() {
 //     .then(function(data){
 //         console.log(data);
 //     })
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 var apiKey = "f9f4dca9"
  var ombdUrl = `http://www.omdbapi.com/?i=tt3896198&apiKey=${apiKey}&t=${title}`
 var boxOffice = document.querySelector("#boxOffice")
@@ -216,7 +209,3 @@ var boxOffice = document.querySelector("#boxOffice")
     })
       
      boxOffice.textContent
-<<<<<<< HEAD
-=======
-
->>>>>>> main
