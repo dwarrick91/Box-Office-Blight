@@ -1,7 +1,6 @@
 $(document).ready(function(){
-  $('select').formSelect();
-});
-
+    $('select').formSelect();
+  });
 
 
 var Onward = {
@@ -216,5 +215,5 @@ var boxOffice = document.querySelector("#boxOffice")
       
      boxOffice.textContent
 
-
-   
+     
+     
