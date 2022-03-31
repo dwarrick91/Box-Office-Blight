@@ -1,3 +1,8 @@
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+
+
 var Onward = {
     title: "Onward",
     releaseDate: '2020-03-06',
@@ -209,3 +214,6 @@ var boxOffice = document.querySelector("#boxOffice")
     })
       
      boxOffice.textContent
+
+     
+     
