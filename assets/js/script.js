@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 var queryURL = "https://api.covidtracking.com/v2/us/daily.json"
 // make sure to use v.2. The above gets data for California. Will need to convert state into 2-letter state code
 dataList = [];
@@ -81,7 +81,7 @@ function colorDate(date, dateList, colorList) {
 //     .then(function(data){
 //         console.log(data);
 //     })
-=======
+
 var apiKey = "f9f4dca9"
  var ombdUrl = `http://www.omdbapi.com/?i=tt3896198&apiKey=${apiKey}&t=${title}`
 var boxOffice = document.querySelector("#boxOffice")
@@ -97,4 +97,4 @@ var boxOffice = document.querySelector("#boxOffice")
     })
       
      boxOffice.textContent
->>>>>>> main
+
