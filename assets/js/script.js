@@ -1,3 +1,5 @@
+movieStoredList = [];
+
 var Onward = {
     title: "Onward",
     releaseDate: '2020-03-06',
@@ -209,3 +211,30 @@ var boxOffice = document.querySelector("#boxOffice")
     })
       
      boxOffice.textContent
+
+
+
+
+function printList() {
+if (localStorage.getItem("cityList") === null) {
+    return
+}
+else {
+    movieStoredList = JSON.parse(localStorage.getItem('storedList'));
+    // for (i=0; i<cityStoredList.length; i++) {
+    //     var listEl = $('<li>');
+    //     listEl.addClass('list-group-item select-city-btn').text(cityStoredList[i]);
+    //     listEl.appendTo(cityList);
+    };
+    return movieStoredList;
+};
+};
+
+function newSearch(searchItem) {
+    movieStoredList.splice(0,0,searchItem)
+    if (movieStoredList.length > 6) {
+        movieStoredList = movieStoredList.slice[5];
+    }
+    localStorage.setItem("storedList", JSON.stringify(movieStoredList));
+
+}
