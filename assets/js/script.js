@@ -97,3 +97,4 @@ var boxOffice = document.querySelector("#boxOffice")
     })
       
      boxOffice.textContent
+
