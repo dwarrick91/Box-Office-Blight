@@ -133,7 +133,6 @@ var  tomAndJerry = {
 
 filmList = [Onward,theBanker, theWretched,theVastOfNight,Followed,missJuneteenth,Relic,taxCollector,Tenet,theBrokenHeartsGallery,theWarWithGrandpa,honestThief,letHimGo,freaky,wonderWoman1984,respect,mortalKombat,tomAndJerry]
 
-newSearch(Onward);
 searchFilms();
 
 var queryURL = "https://api.covidtracking.com/v2/us/daily.json"
@@ -156,7 +155,6 @@ fetch(queryURL)
         logList = logConvert(dataList);
 
         colorData = colorDate('2020-12-08', dateList, colorList);
-        console.log((colorData));
 
 
         const ctx = document.getElementById('myChart');
@@ -224,7 +222,7 @@ function movieGrossCharat() {
 
 
 function printList() {
-if (localStorage.getItem("cityList") === null) {
+if (localStorage.getItem("storedList") === null) {
     return
 }
 else {
@@ -238,19 +236,23 @@ else {
 };
 };
 
-function newSearch(searchItem) {
+//Generating drop down list of recent searches to store in local storage
+function storedSearch(searchItem) {
     movieStoredList.splice(0,0,searchItem)
-    if (movieStoredList.length > 6) {
-        movieStoredList = movieStoredList.slice[5];
+    if (movieStoredList.length > 5) {
+        movieStoredList.splice(4,1);
+        var toClear = $("#stored-movies").children().eq(0)
+        toClear.remove();
     }
     localStorage.setItem("storedList", JSON.stringify(movieStoredList));
-    var film = $('<option>');
-    var selectEl = $('#stored-movies');
-    film.attr('value', searchItem.value).text(searchItem.title);
-    film.appendTo(selectEl);
+    var selectEl2 = $('#stored-movies');
+    var film2 = $('<option>');
+    film2.attr('value', searchItem.value).text(searchItem.title)
+    film2.appendTo(selectEl2);
+    $(document).ready(function(){
+        $('select').formSelect();
+      });  
 }
-
-newSearch(Onward);
 
 $(document).ready(function(){
     $('select').formSelect();
@@ -260,35 +262,23 @@ $(document).ready(function(){
   function searchFilms(){
     var selectEl = $('#filmDropDown');
     for (i=0; i<filmList.length; i++) {
-    var film = $('<option>');
-    film.attr('value', filmList[i].value).text(filmList[i].title);
-    film.appendTo(selectEl);
+        var film = $('<option>');
+        film.attr('value', filmList[i].value).text(filmList[i].title)
+        film.appendTo(selectEl);
     }
 }
 
-
-     
-var handleDropDownSelect = function (event) {
-    console.log('hi!');
-    var filmInput = $('#filmDropDown').val();
-    console.log(filmInput);
+//Event listener for first dropdown menu
+selectEl.on('change', (event) => {
+    var filmInput = event.target.value;
     if (filmInput === "Choose a film") {
         console.log('You need to choose a film!');
         return;
     }
     for (i=0; i<filmList.length; i++) {
-        console.log('hi!');
-        if (filmInput === filmList[i].title) {
+        if (filmInput === filmList[i].value) {
             //Add functionality to populate search bars
-            newSearch(filmList[i])
+            storedSearch(filmList[i])
         }
     }
-    
-    printCity(cityInput);
-    clearPrevData();
-    getWeatherApi(cityInput);
-    cityID.val('');
-};
-
-selectEl.on('change', handleDropDownSelect, false);
-
+  });
