@@ -301,26 +301,7 @@ selectEl.on('change', (event) => {
     displayMovieData(filmInput)
     displayCOVIDChart(filmList[filmInput-1].releaseDate)
   });
-  function displayMovieData(filmInput) {
-    
-   var movieTitle = filmList[filmInput-1].title
-   console.log(movieTitle);
-   var apiKey = "f9f4dca9"
-    var newQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
-    var selectedMovieTitle = document.querySelector("#title")
-    var movieSummeryEl = document.querySelector("#summery")
-    console.log(selectedMovieTitle);
-    fetch(newQueryURL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function(data){
-        console.log(data.Plot);
-            console.log(data);
-            movieSummeryEl.textContent = data.Plot
-        })
-  selectedMovieTitle.textContent = movieTitle
-      }  
+ 
   
 //Event listener for stored searches dropdown menu
 $('#stored-movies').on('change', (event) => {
