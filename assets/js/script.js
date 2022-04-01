@@ -193,7 +193,7 @@ function displayMovieData(filmInput) {
     var movieTitle = filmList[filmInput-1].title
     console.log(movieTitle);
     var apiKey = "f9f4dca9"
-     var newQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
+     var newQueryURL = `https://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
      var selectedMovieTitle = document.querySelector("#title")
      var movieSummaryEl = document.querySelector("#summary")
      var movieDirectorEl = document.querySelector("#director")
