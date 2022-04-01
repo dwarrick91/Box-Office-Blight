@@ -37,6 +37,14 @@ The data displayed in the website was a result of several API requests, the foll
 
 ## USAGE
 
+Screenshot of the deployed application
+
+![image](./assets/IMAGES/Screenshot%20(11).png)
+
+Link to the deployed site -:
+https://dwarrick91.github.io/Pandemic-Blight/
+
+
 ## LICENSE
 
 MIT License
@@ -64,17 +72,21 @@ SOFTWARE.
 ## CONTACT
 
 * DANIEL NELSON
+  
+  GITHUB-: https://github.com/dannelson714
 
 * DAVID WARRICK
 
+  GITHUB-:https://github.com/dwarrick91
+
 * JULIAN RICARDSON 
+  
+  GITHUB-:https://github.com/julianr3
 
 * BENJAMIN THADAVANAL
 
   GITHUB - https://github.com/Bthad2001
-  EMAIL- benjaminthadavanal@gmail.com
-  Linkedln -https://www.linkedin.com/in/ben-thadavanal-b4b3bb43
-
+ 
   ## Aknowledgments
   Contributors: The Name for the website was a suggestion from Laura Cole (TA) "BOX OFFICE BLIGHT"
  Reviewers: Laura Cole and Ben Wright are instructors who contrivuted their time to the devemopment of this application.
