@@ -131,54 +131,87 @@ var  tomAndJerry = {
     value: "18"
 }
 
-filmList = [Onward,theBanker, theWretched,theVastOfNight,Followed,missJuneteenth,Relic,taxCollector,Tenet,theBrokenHeartsGallery,theWarWithGrandpa,honestThief,letHimGo,freaky,wonderWoman1984,respect,mortalKombat,tomAndJerry]
+filmList = [Onward,theBanker,theWretched,theVastOfNight,Followed,missJuneteenth,Relic,taxCollector,Tenet,theBrokenHeartsGallery,theWarWithGrandpa,honestThief,letHimGo,freaky,wonderWoman1984,respect,mortalKombat,tomAndJerry]
 
 searchFilms();
 printList();
 
-var queryURL = "https://api.covidtracking.com/v2/us/daily.json"
-// make sure to use v.2. The above gets data for California. Will need to convert state into 2-letter state code
-dataList = [];
-dateList = [];
-colorList = [];
-fetch(queryURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function(data){
-        for (i=(data.data.length-55); i>=0; i--) {
-            newDataList = dataList.push(data.data[i].cases.total.calculated.seven_day_change_percent);
-            newDateList = dateList.push(data.data[i].date)
-        }
-        for (i=0; i<366; i++) {
-            newColorList = colorList.push('rgba(54, 162, 235, 0.2)');
-        }
-        logList = logConvert(dataList);
+//Function performs API call to COVID Tracker, creates chart, shows release date of film in bright red.
+function displayCOVIDChart(filmDate) {
+    var chart = $('#myChart');
+    chart.remove();
+    var newChart = $('<canvas>');
+    var placement = $('#chartPlacement');
+    newChart.attr("id", "myChart").attr("width", "400").attr("height","400")
+    newChart.appendTo(placement);
+    var queryURL = "https://api.covidtracking.com/v2/us/daily.json"
+    dataList = [];
+    dateList = [];
+    colorList = [];
+    fetch(queryURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function(data){
+            for (i=(data.data.length-54); i>=0; i--) {
+                newDataList = dataList.push(data.data[i].cases.total.calculated.seven_day_change_percent);
+                newDateList = dateList.push(data.data[i].date)
+            }
+            for (i=0; i<367; i++) {
+                newColorList = colorList.push('rgba(54, 162, 235, 0.2)');
+            }
+            logList = logConvert(dataList);
 
-        colorData = colorDate('2020-12-08', dateList, colorList);
+            colorData = colorDate(filmDate, dateList, colorList);
 
 
-        const ctx = document.getElementById('myChart');
-        const myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dateList,
-                datasets: [{
-                    label: 'Dates',
-                    data: logList,
-                    backgroundColor: colorData,
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+            const ctx = document.getElementById('myChart');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dateList,
+                    datasets: [{
+                        label: 'Natural Logarithm of Cumulative 7-day percent increase in COVID Confirmed Cases',
+                        data: logList,
+                        backgroundColor: colorData,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
+            });
         });
-    });
+}
 
+//API call to OMDb
+function displayMovieData(filmInput) {
+    
+    var movieTitle = filmList[filmInput-1].title
+    console.log(movieTitle);
+    var apiKey = "f9f4dca9"
+     var newQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
+     var selectedMovieTitle = document.querySelector("#title")
+     var movieSummaryEl = document.querySelector("#summary")
+     var movieDirectorEl = document.querySelector("#director")
+     var budgetEl = document.querySelector("#budget")
+     console.log(selectedMovieTitle);
+     fetch(newQueryURL)
+         .then(function (response) {
+             return response.json();
+         })
+         .then(function(data){
+         console.log(data.Plot);
+             console.log(data);
+             movieSummaryEl.textContent = data.Plot;
+             movieDirectorEl.textContent = "Director: " + data.Director;
+             budgetEl.textContent = "Budget: $"+filmList[filmInput-1].budget + " million   Box Office: " + data.BoxOffice + " million";
+         })
+   selectedMovieTitle.textContent = movieTitle
+   }
 
 //convert to log-base-2
 function logConvert(dataList) {
@@ -191,7 +224,7 @@ function logConvert(dataList) {
 
 //To recolor data point for date of movie release in theaters
 function colorDate(date, dateList, colorList) {
-    for (i=0; i<dateList.length; i++) {
+    for (i=0; i<dateList.length-1; i++) {
         if (date === dateList[i]) {
             colorList.splice(i,0,'rgba(255, 10, 32, 3.8)')
             colorList.splice(i+1,1);
@@ -199,36 +232,7 @@ function colorDate(date, dateList, colorList) {
     }
     return colorList;
 }
-
-
-
-
-// var newQueryURL = "http://www.omdbapi.com/?y=2020&apikey=c3d2c14c"
-
-// fetch(newQueryURL)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function(data){
-//         console.log(data);
-//     })
-// var apiKey = "f9f4dca9"
-//  var ombdUrl = `http://www.omdbapi.com/?i=tt3896198&apiKey=${apiKey}&t=${title}`
-// var boxOffice = document.querySelector("#boxOffice")
-
  
-
-//  fetch(ombdUrl)
-//     .then(function (response)  {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//     })
-      
-//      boxOffice.textContent
-
-
 
 
 function printList() {
@@ -282,6 +286,7 @@ $(document).ready(function(){
 //Event listener for first dropdown menu
 selectEl.on('change', (event) => {
     var filmInput = event.target.value;
+    console.log(filmInput);
     if (filmInput === "Choose a film") {
         console.log('You need to choose a film!');
         return;
@@ -291,5 +296,20 @@ selectEl.on('change', (event) => {
             //Add functionality to populate search bars
             storedSearch(filmList[i])
         }
+        
     }
+    displayMovieData(filmInput)
+    displayCOVIDChart(filmList[filmInput-1].releaseDate)
   });
+  
+  
+//Event listener for stored searches dropdown menu
+$('#stored-movies').on('change', (event) => {
+    var filmInput = event.target.value;
+    for (i=0; i<filmList.length; i++) {
+        if (filmInput === filmList[i].value) {
+            displayMovieData(filmInput)
+            displayCOVIDChart(filmList[filmInput-1].releaseDate)
+        }
+    }
+});
