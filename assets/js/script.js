@@ -131,7 +131,7 @@ var  tomAndJerry = {
     value: "18"
 }
 
-filmList = [Onward,theBanker, theWretched,theVastOfNight,Followed,missJuneteenth,Relic,taxCollector,Tenet,theBrokenHeartsGallery,theWarWithGrandpa,honestThief,letHimGo,freaky,wonderWoman1984,respect,mortalKombat,tomAndJerry]
+filmList = [Onward,theBanker,theWretched,theVastOfNight,Followed,missJuneteenth,Relic,taxCollector,Tenet,theBrokenHeartsGallery,theWarWithGrandpa,honestThief,letHimGo,freaky,wonderWoman1984,respect,mortalKombat,tomAndJerry]
 
 searchFilms();
 printList();
@@ -153,11 +153,11 @@ function displayCOVIDChart(filmDate) {
             return response.json();
         })
         .then(function(data){
-            for (i=(data.data.length-55); i>=0; i--) {
+            for (i=(data.data.length-54); i>=0; i--) {
                 newDataList = dataList.push(data.data[i].cases.total.calculated.seven_day_change_percent);
                 newDateList = dateList.push(data.data[i].date)
             }
-            for (i=0; i<366; i++) {
+            for (i=0; i<367; i++) {
                 newColorList = colorList.push('rgba(54, 162, 235, 0.2)');
             }
             logList = logConvert(dataList);
@@ -193,9 +193,11 @@ function displayMovieData(filmInput) {
     var movieTitle = filmList[filmInput-1].title
     console.log(movieTitle);
     var apiKey = "f9f4dca9"
-     var newQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=2020&apikey=${apiKey}`
+     var newQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
      var selectedMovieTitle = document.querySelector("#title")
-     var movieSummeryEl = document.querySelector("#summery")
+     var movieSummaryEl = document.querySelector("#summary")
+     var movieDirectorEl = document.querySelector("#director")
+     var budgetEl = document.querySelector("#budget")
      console.log(selectedMovieTitle);
      fetch(newQueryURL)
          .then(function (response) {
@@ -204,7 +206,9 @@ function displayMovieData(filmInput) {
          .then(function(data){
          console.log(data.Plot);
              console.log(data);
-             movieSummeryEl.textContent = data.Plot
+             movieSummaryEl.textContent = data.Plot;
+             movieDirectorEl.textContent = "Director: " + data.Director;
+             budgetEl.textContent = "Budget: $"+filmList[filmInput-1].budget + " million   Box Office: " + data.BoxOffice + " million";
          })
    selectedMovieTitle.textContent = movieTitle
    }
@@ -220,7 +224,7 @@ function logConvert(dataList) {
 
 //To recolor data point for date of movie release in theaters
 function colorDate(date, dateList, colorList) {
-    for (i=0; i<dateList.length; i++) {
+    for (i=0; i<dateList.length-1; i++) {
         if (date === dateList[i]) {
             colorList.splice(i,0,'rgba(255, 10, 32, 3.8)')
             colorList.splice(i+1,1);
