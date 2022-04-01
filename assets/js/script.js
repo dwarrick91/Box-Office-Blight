@@ -301,7 +301,7 @@ selectEl.on('change', (event) => {
     displayMovieData(filmInput)
     displayCOVIDChart(filmList[filmInput-1].releaseDate)
   });
-  
+ 
   
 //Event listener for stored searches dropdown menu
 $('#stored-movies').on('change', (event) => {
