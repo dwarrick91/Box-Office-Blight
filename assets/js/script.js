@@ -134,6 +134,7 @@ var  tomAndJerry = {
 filmList = [Onward,theBanker, theWretched,theVastOfNight,Followed,missJuneteenth,Relic,taxCollector,Tenet,theBrokenHeartsGallery,theWarWithGrandpa,honestThief,letHimGo,freaky,wonderWoman1984,respect,mortalKombat,tomAndJerry]
 
 searchFilms();
+printList();
 
 var queryURL = "https://api.covidtracking.com/v2/us/daily.json"
 // make sure to use v.2. The above gets data for California. Will need to convert state into 2-letter state code
@@ -198,19 +199,7 @@ function colorDate(date, dateList, colorList) {
     }
     return colorList;
 }
-
-
-function movieGrossCharat() {
-
-
-}
-
-
-
-      
-
-
-
+ 
 
 
 function printList() {
@@ -219,10 +208,11 @@ if (localStorage.getItem("storedList") === null) {
 }
 else {
     movieStoredList = JSON.parse(localStorage.getItem('storedList'));
-    for (i=0; i<cityStoredList.length; i++) {
-        var listEl = $('<li>');
-        listEl.addClass('list-group-item select-city-btn').text(cityStoredList[i]);
-        listEl.appendTo(cityList);
+    var selectEl = $('#stored-movies')
+    for (i=0; i<movieStoredList.length; i++) {
+        var listEl = $('<option>');
+        listEl.attr('value', movieStoredList[i].value).text(movieStoredList[i].title)
+        listEl.appendTo(selectEl);
     };
     return movieStoredList;
 };
@@ -232,8 +222,8 @@ else {
 function storedSearch(searchItem) {
     movieStoredList.splice(0,0,searchItem)
     if (movieStoredList.length > 5) {
-        movieStoredList.splice(4,1);
-        var toClear = $("#stored-movies").children().eq(0)
+        movieStoredList.splice(0,1);
+        var toClear = $("#stored-movies").children().eq(1)
         toClear.remove();
     }
     localStorage.setItem("storedList", JSON.stringify(movieStoredList));
