@@ -205,15 +205,7 @@ function movieGrossCharat() {
 
 }
 
-// var newQueryURL = "http://www.omdbapi.com/?y=2020&apikey=c3d2c14c"
 
-// fetch(newQueryURL)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function(data){
-//         console.log(data);
-//     })
 
       
 
@@ -271,6 +263,7 @@ $(document).ready(function(){
 //Event listener for first dropdown menu
 selectEl.on('change', (event) => {
     var filmInput = event.target.value;
+    console.log(filmInput);
     if (filmInput === "Choose a film") {
         console.log('You need to choose a film!');
         return;
@@ -280,5 +273,29 @@ selectEl.on('change', (event) => {
             //Add functionality to populate search bars
             storedSearch(filmList[i])
         }
+        
     }
+    displayMovieData(filmInput)
   });
+  function displayMovieData(filmInput) {
+    
+   var movieTitle = filmList[filmInput-1].title
+   console.log(movieTitle);
+   var apiKey = "f9f4dca9"
+    var newQueryURL = `http://www.omdbapi.com/?t=${movieTitle}&y=2020&apikey=${apiKey}`
+    var selectedMovieTitle = document.querySelector("#title")
+    var movieSummeryEl = document.querySelector("#summery")
+    console.log(selectedMovieTitle);
+    fetch(newQueryURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function(data){
+        console.log(data.Plot);
+            console.log(data);
+            movieSummeryEl.textContent = data.Plot
+        })
+  selectedMovieTitle.textContent = movieTitle
+  
+  }
+ 
